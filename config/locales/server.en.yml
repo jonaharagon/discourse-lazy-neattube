@@ -1,0 +1,3 @@
+en:
+  site_settings:
+    lazy_peertube_enabled: "Enable lazy loading for PeerTube embeds (experimental)"

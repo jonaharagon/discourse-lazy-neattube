@@ -6,7 +6,7 @@ module Onebox
       include Engine
       include StandardEmbed
 
-      matches_regexp(%r{^https?://neat\.tube/\d+(/\w+)?/?})
+      matches_regexp(%r{^https?://neat\.tube/(w|videos/watch)/(\w{22}|[\w-]{36})})
       requires_iframe_origins "https://neat.tube"
       always_https
 

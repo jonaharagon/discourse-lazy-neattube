@@ -8,7 +8,6 @@
 
 enabled_site_setting :lazy_neattube_enabled
 
-require "onebox"
 require_relative "lib/neattube-videos/lazy_neattube"
 
 after_initialize do

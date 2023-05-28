@@ -1,49 +1,49 @@
 # frozen_string_literal: true
+require "onebox"
 
-module Onebox
-  module Engine
-    class NeattubeOnebox
-      include Engine
-      include StandardEmbed
+class Onebox::Engine::NeattubeOnebox
+  include Onebox::Engine
 
-      matches_regexp(%r{^https?://neat\.tube/(w|videos/watch)/(\w{22}|[\w-]{36})})
-      requires_iframe_origins "https://neat.tube"
-      always_https
+  def self.priority
+      0
+  end
 
-      def placeholder_html
-        ::Onebox::Helpers.video_placeholder_html
-      end
+  matches_regexp(%r{^https?://neat\.tube/(w|videos/watch)/(\w{22}|[\w-]{36})})
+  requires_iframe_origins "https://neat.tube"
+  always_https
 
-      def to_html
-        video_src = Nokogiri::HTML5.fragment(oembed_data[:html]).at_css("iframe")&.[]("src")
-        video_src = og_data[:video] if video_src.blank?
-        video_src = video_src.gsub("autoplay=1", "").chomp("?")
+  def placeholder_html
+    ::Onebox::Helpers.video_placeholder_html
+  end
 
-        iframe_id = video_src.sub("https://neat.tube/videos/embed/", "")
+  def to_html
+    video_src = Nokogiri::HTML5.fragment(oembed_data[:html]).at_css("iframe")&.[]("src")
+    video_src = og_data[:video] if video_src.blank?
+    video_src = video_src.gsub("autoplay=1", "").chomp("?")
 
-        <<~HTML
-          <div class="neattube-onebox neattube-video-container"
-            data-video-id="#{iframe_id}"
-            data-video-title="#{og_data.title}"
-            data-provider-name="neattube">
-            <a href="#{og_data.url}" target="_blank">
-              <img class="neattube-thumbnail"
-                src="#{og_data.image}"
-                title="#{og_data.title}">
-            </a>
-          </div>
-        HTML
-      end
+    iframe_id = video_src.sub("https://neat.tube/videos/embed/", "")
 
-      private
+    <<~HTML
+      <div class="neattube-onebox neattube-video-container"
+        data-video-id="#{iframe_id}"
+        data-video-title="#{og_data.title}"
+        data-provider-name="neattube">
+        <a href="#{og_data.url}" target="_blank">
+          <img class="neattube-thumbnail"
+            src="#{og_data.image}"
+            title="#{og_data.title}">
+        </a>
+      </div>
+    HTML
+  end
 
-      def oembed_data
-        @oembed_data = get_oembed
-      end
+  private
 
-      def og_data
-        @og_data = get_opengraph
-      end
-    end
+  def oembed_data
+    @oembed_data = get_oembed
+  end
+
+  def og_data
+    @og_data = get_opengraph
   end
 end

@@ -3,6 +3,7 @@ require "onebox"
 
 class Onebox::Engine::NeattubeOnebox
   include Onebox::Engine
+  include Onebox::Engine::StandardEmbed
 
   def self.priority
       0

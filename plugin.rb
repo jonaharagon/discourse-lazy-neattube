@@ -1,22 +1,20 @@
 # frozen_string_literal: true
 
-# name: discourse-peertube-onebox
-# about: Onebox and lazy loading support for PeerTube videos
+# name: discourse-lazy-neattube
+# about: Lazy loading support for Neat.Tube videos
 # version: 0.1
 # authors: Jonah Aragon, Jan Cernik
-# url: https://github.com/jonaharagon/discourse-lazy-peertube
+# url: https://github.com/jonaharagon/discourse-lazy-neattube
 
-hide_plugin if self.respond_to?(:hide_plugin)
-enabled_site_setting :lazy_videos_enabled
+enabled_site_setting :lazy_neattube_enabled
 
 require "onebox"
-require_relative "lib/onebox/engine/peertube_onebox"
-require_relative "lib/lazy-videos/lazy_peertube"
+require_relative "lib/neattube-videos/lazy_neattube"
 
 after_initialize do
   on(:reduce_cooked) do |fragment|
     fragment
-      .css(".lazy-video-container")
+      .css(".neattube-video-container")
       .each do |video|
         title = video["data-video-title"]
         href = video.at_css("a")["href"]

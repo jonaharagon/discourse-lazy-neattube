@@ -1,5 +1,5 @@
 plugins:
-  lazy_peertube_enabled:
+  lazy_neattube_enabled:
     default: true
     client: true
     hidden: false

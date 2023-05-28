@@ -1,5 +1,3 @@
-# Discourse PeerTube OneBox
+# Discourse Neat.Tube OneBox
 
-Adds OneBox support for PeerTube videos.
-
-Lazy loading extends https://github.com/discourse/discourse/tree/main/plugins/discourse-lazy-videos (required to function).
+Adds lazy loading support for [Neat.Tube](https://neat.tube) (PeerTube instance) videos.

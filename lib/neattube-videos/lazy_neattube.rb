@@ -14,7 +14,11 @@ class Onebox::Engine::NeattubeOnebox
   always_https
 
   def placeholder_html
-    ::Onebox::Helpers.video_placeholder_html
+    <<~HTML
+      <img class="neattube-thumbnail"
+        src="#{og_data.image}"
+        title="#{og_data.title}">
+    HTML
   end
 
   def to_html

@@ -9,8 +9,8 @@ export default function getVideoAttributes(cooked) {
   const dominantColor = img?.dataset?.dominantColor;
   const title = cooked.dataset.videoTitle;
   const startTime = cooked.dataset.videoStartTime || 0;
-  const providerName = cooked.dataset.providerName;
+  const instanceName = cooked.dataset.instanceName;
   const id = cooked.dataset.videoId;
 
-  return { url, thumbnail, title, providerName, id, dominantColor, startTime };
+  return { url, thumbnail, title, instanceName, id, dominantColor, startTime };
 }

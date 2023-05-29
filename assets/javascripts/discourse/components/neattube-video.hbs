@@ -1,31 +1,31 @@
 <div
   class={{concat-class
     "neattube-video-container"
-    (concat @videoAttributes.providerName "-onebox")
+    (concat @videoAttributes.instanceName "-onebox")
     (if this.isLoaded "video-loaded")
   }}
   data-video-id={{@videoAttributes.id}}
   data-video-title={{@videoAttributes.title}}
   data-video-start-time={{@videoAttributes.startTime}}
-  data-provider-name={{@videoAttributes.providerName}}
+  data-instance-name={{@videoAttributes.instanceName}}
 >
   {{#if this.isLoaded}}
     <NeattubeIframe
-      @providerName={{@videoAttributes.providerName}}
+      @instanceName={{@videoAttributes.instanceName}}
       @title={{@videoAttributes.title}}
       @videoId={{@videoAttributes.id}}
       @startTime={{@videoAttributes.startTime}}
     />
   {{else}}
     <div
-      class={{concat-class "video-thumbnail" @videoAttributes.providerName}}
+      class={{concat-class "video-thumbnail" @videoAttributes.instanceName}}
       tabindex="0"
       style={{this.thumbnailStyle}}
       {{on "click" this.loadEmbed}}
       {{on "keypress" this.loadEmbed}}
     >
       <img
-        class={{concat @videoAttributes.providerName "-thumbnail"}}
+        class={{concat @videoAttributes.instanceName "-thumbnail"}}
         src={{@videoAttributes.thumbnail}}
         title={{@videoAttributes.title}}
         loading="lazy"
@@ -33,7 +33,7 @@
       <div
         class={{concat-class
           "icon"
-          (concat @videoAttributes.providerName "-icon")
+          (concat @videoAttributes.instanceName "-icon")
         }}
       ></div>
     </div>

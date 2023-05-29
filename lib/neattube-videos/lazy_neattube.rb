@@ -34,7 +34,7 @@ class Onebox::Engine::NeattubeOnebox
       <div class="neattube-onebox neattube-video-container"
         data-video-id="#{iframe_id}"
         data-video-title="#{og_data.title}"
-        data-provider-name="neattube">
+        data-instance-name="neattube">
         <a href="#{og_data.url}" target="_blank">
           <img class="neattube-thumbnail"
             src="#{og_data.image}"

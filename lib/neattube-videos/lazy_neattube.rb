@@ -14,6 +14,8 @@ class Onebox::Engine::NeattubeOnebox
   always_https
 
   def placeholder_html
+    og_data = get_opengraph
+
     <<~HTML
       <img class="neattube-thumbnail"
         src="#{og_data.image}"
@@ -22,7 +24,8 @@ class Onebox::Engine::NeattubeOnebox
   end
 
   def to_html
-    video_src = og_data.video
+    og_data = get_opengraph
+    video_src = og_data.video_secure_url
     video_src = video_src.gsub("autoplay=1", "").chomp("?")
 
     iframe_id = video_src.sub("https://neat.tube/videos/embed/", "")
@@ -41,9 +44,4 @@ class Onebox::Engine::NeattubeOnebox
     HTML
   end
 
-  private
-
-  def og_data
-    @og_data = get_opengraph
-  end
 end

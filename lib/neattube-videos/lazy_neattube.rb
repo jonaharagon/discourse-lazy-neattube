@@ -45,7 +45,10 @@ class Onebox::Engine::NeattubeOnebox
   private
 
   def oembed_data
-    @oembed_data = get_oembed
+    response = Onebox::Helpers.fetch_response("https://neat.tube/services/oembed?url=#{url}")
+    @oembed_data = Onebox::Helpers.symbolize_keys(::MultiJson.load(response))
+  rescue StandardError
+    "{}"
   end
 
   def og_data

@@ -22,8 +22,7 @@ class Onebox::Engine::NeattubeOnebox
   end
 
   def to_html
-    video_src = Nokogiri::HTML5.fragment(oembed_data[:html]).at_css("iframe")&.[]("src")
-    video_src = og_data[:video] if video_src.blank?
+    video_src = og_data.video
     video_src = video_src.gsub("autoplay=1", "").chomp("?")
 
     iframe_id = video_src.sub("https://neat.tube/videos/embed/", "")
@@ -43,13 +42,6 @@ class Onebox::Engine::NeattubeOnebox
   end
 
   private
-
-  def oembed_data
-    response = Onebox::Helpers.fetch_response("https://neat.tube/services/oembed?url=#{url}")
-    @oembed_data = Onebox::Helpers.symbolize_keys(::MultiJson.load(response))
-  rescue StandardError
-    "{}"
-  end
 
   def og_data
     @og_data = get_opengraph

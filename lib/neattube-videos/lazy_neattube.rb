@@ -34,12 +34,18 @@ class Onebox::Engine::NeattubeOnebox
       <div class="neattube-onebox neattube-video-container"
         data-video-id="#{iframe_id}"
         data-video-title="#{og_data.title}"
-        data-instance-name="neattube">
-        <a href="#{og_data.url}" target="_blank">
+        data-instance-name="neattube"
+        itemscope
+        itemprop="VideoObject"
+        itemtype="https://schema.org/VideoObject">
+        <a href="#{og_data.url}" target="_blank" itemprop="url">
           <img class="neattube-thumbnail"
             src="#{og_data.image}"
-            title="#{og_data.title}">
+            title="#{og_data.title}"
+            itemprop="thumbnailUrl">
         </a>
+        <meta itemprop="name" content="#{og_data.title}">
+        <link itemprop="embedUrl" href="#{video_src}">
       </div>
     HTML
   end

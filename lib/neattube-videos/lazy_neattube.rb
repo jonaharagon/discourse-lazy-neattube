@@ -18,7 +18,7 @@ class Onebox::Engine::NeattubeOnebox
 
     <<~HTML
       <img class="neattube-thumbnail"
-        src="#{og_data.image}"
+        src="#{og_data.image_url}"
         title="#{og_data.title}">
     HTML
   end
@@ -40,7 +40,7 @@ class Onebox::Engine::NeattubeOnebox
         itemtype="https://schema.org/VideoObject">
         <a href="#{og_data.url}" target="_blank" itemprop="url">
           <img class="neattube-thumbnail"
-            src="#{og_data.image}"
+            src="#{og_data.image_url}"
             title="#{og_data.title}"
             itemprop="thumbnailUrl">
         </a>

@@ -9,8 +9,8 @@ class Onebox::Engine::NeattubeOnebox
       0
   end
 
-  matches_regexp(%r{^https?://neat\.tube/(w|videos/watch)/(\w{22}|[\w-]{36})})
-  requires_iframe_origins "https://neat.tube"
+  matches_regexp(%r{^https?://(neat\.tube/(w|videos/watch)/(\w{22}|[\w-]{36})|www\.privacyguides\.org/(videos/\d{4})(.*))})
+  requires_iframe_origins("https://neat.tube", "https://www.privacyguides.org")
   always_https
 
   def placeholder_html
